@@ -148,10 +148,17 @@ def team_colors team_name
   team[:colors]
 end
 
-def team_names
+def team_names 
+  game_hash.map do |court, data |
+    data[:team_name]
+  end
 end
 
-def player_numbers
+def player_numbers team_name
+  team = choose_team(team_name)
+  team[:players].map do |player|
+    player[:number]
+  end
 end
 
 def player_stats name
@@ -161,6 +168,10 @@ def player_stats name
 end
 
 def big_shoe_rebounds
+  sorted = all_players.sort_by do | player |
+    player[:shoe]
+  end
+  sorted.last[:rebounds]
 end
 
 def choose_team team_name
