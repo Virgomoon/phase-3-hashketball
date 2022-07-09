@@ -1,3 +1,4 @@
+require 'pry'
 # Write your code below game_hash
 def game_hash
   {
@@ -127,3 +128,44 @@ def game_hash
 end
 
 # Write code here
+def all_players 
+  game_hash[:home][:players] + game_hash[:away][:players]
+end
+
+
+def num_points_scored name
+  scorer = player_stats(name)
+  scorer[:points]
+end
+
+def shoe_size name
+  stepper = player_stats(name)
+  stepper[:shoe]
+end
+
+def team_colors team_name
+  team = choose_team(team_name)
+  team[:colors]
+end
+
+def team_names
+end
+
+def player_numbers
+end
+
+def player_stats name
+  all_players.find do | player |
+    player[:player_name] == name
+  end
+end
+
+def big_shoe_rebounds
+end
+
+def choose_team team_name
+  team = game_hash.find do | court, data |
+    data[:team_name] == team_name
+  end
+  team[1]
+end
